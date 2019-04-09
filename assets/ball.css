@@ -1,0 +1,64 @@
+* {
+    border: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    background: hsl(0,0%,20%);
+    overflow: hidden;
+}
+.preloader, .preloader:before {
+    --playState: running;
+    border-radius: 50%;
+}
+.preloader {
+    --stopC1: hsl(0,0%,20%);
+    --stopC2: hsl(0,0%,10%);
+    animation: changeColor 24s ease-in-out infinite var(--playState);
+    background-image:
+            radial-gradient(100% 100% at 50% 0,hsla(0,0%,0%,0) 92%,hsl(0,0%,0%,0.5)),
+            radial-gradient(100% 100% at 25% 0,var(--stopC1) 25%,var(--stopC2));
+    box-shadow: 0 0 15em 5em hsla(0,0%,0%,70%);
+    font-size: 12px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 20em;
+    height: 20em;
+}
+.preloader:before {
+    --c: hsl(0,89%,60%);
+    --cT: hsla(0,89%,60%,0);
+    animation: spin 2s ease-in-out infinite var(--playState);
+    background-image: radial-gradient(100% 100% at 48% 50%,var(--cT) 48%,currentColor 52%);
+    border: 0;
+    border-right: 0.3em solid;
+    box-shadow: 0.3em 0 0.3em;
+    color: var(--c);
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    transform: translateX(-0.15em) rotate(0deg);
+    transform-origin: calc(50% - 0.15em) 50%;
+}
+@keyframes changeColor {
+    from { filter: hue-rotate(0deg) }
+    8.33% { filter: hue-rotate(30deg) }
+    16.67% { filter: hue-rotate(60deg) }
+    25% { filter: hue-rotate(90deg) }
+    33.33% { filter: hue-rotate(120deg) }
+    41.67% { filter: hue-rotate(150deg) }
+    50% { filter: hue-rotate(180deg) }
+    58.33% { filter: hue-rotate(210deg) }
+    66.67% { filter: hue-rotate(240deg) }
+    75% { filter: hue-rotate(270deg) }
+    83.33% { filter: hue-rotate(300deg) }
+    91.67% { filter: hue-rotate(330deg) }
+    to { filter: hue-rotate(360deg) }
+}
+@keyframes spin {
+    to { transform: translateX(-0.15em) rotate(2turn) }
+}
